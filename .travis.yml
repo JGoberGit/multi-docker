@@ -16,8 +16,7 @@ after_success:
     # log in to docker CLI
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     #take images to Dockerhub
-    -docker push jongober/multi-client
-    -docker push jongober/multi-nginx
-    -docker push jongober/multi-server
-    -docker push jongober/multi-worker
-    
+    - docker push jongober/multi-client
+    - docker push jongober/multi-nginx
+    - docker push jongober/multi-server
+    - docker push jongober/multi-worker
