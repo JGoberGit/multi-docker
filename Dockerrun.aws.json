@@ -5,23 +5,27 @@
 			"name": "client",
 			"image": "jongober/multi-client",
 			"hostname": "client",
-			"essential": false
+			"essential": false,
+			"memory": 128
 		},
 		{
 			"name": "expressapi",
 			"image": "jongober/multi-server",
 			"hostname": "expressapi",
-			"essential": false
+			"essential": false,
+			"memory": 128
 		},
 		{
 			"name": "worker",
 			"image": "jongober/multi-worker",
-			"essential": false
+			"essential": false,
+			"memory": 128
 		},
 		{
 			"name": "nginx-router",
 			"image": "jongober/multi-nginx",
 			"essential": true,
+			"memory": 128,
 			"portMappings": [
 				{
 					"hostPort": 80,
