@@ -1,0 +1,23 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t jongober/react-test-client -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run jongober/react-test-client npm test -- --coverage
+
+after_success:
+    - docker build -t jongober/multi-client ./client
+    - docker build -t jongober/multi-nginx ./nginx
+    - docker build -t jongober/multi-server ./server
+    - docker build -t jongober/multi-worker ./worker
+    # log in to docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    #take images to Dockerhub
+    -docker push jongober/multi-client
+    -docker push jongober/multi-nginx
+    -docker push jongober/multi-server
+    -docker push jongober/multi-worker
+    
